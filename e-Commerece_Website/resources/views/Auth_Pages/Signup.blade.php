@@ -1,0 +1,39 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up</title>
+  <!-- Bootstrap CSS CDN -->
+  @include('Links.links')
+  <link href="./style.css" rel="stylesheet">
+  
+</head>
+
+<div class="main-container">
+<div class="signup-container">
+    <h3 class="text-center mb-4">Sign Up</h3>
+    <form>
+      <div class="mb-3">
+        <label for="name" class="form-label umair">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+      </div>
+      <div class="mb-3">
+        <label for="confirm-password" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="confirm-password" placeholder="Confirm password" required>
+      </div>
+      <div class="d-grid mb-3">
+        <button type="submit" class="btn btn-black">Sign Up</button>
+      </div>
+      <div class="text-center">
+        <p>Already have an account? <a href="#">Login here</a></p>
+      </div>
+    </form>
+  </div>
+</div>
