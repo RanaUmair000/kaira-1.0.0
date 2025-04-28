@@ -11,7 +11,8 @@
 <div class="main-container">
 <div class="signup-container">
     <h3 class="text-center mb-4">Sign Up</h3>
-    <form>
+    <form action="{{route('add_user')}}" method="POST">
+      @csrf
       <div class="mb-3">
         <label for="name" class="form-label umair">Name</label>
         <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" required>

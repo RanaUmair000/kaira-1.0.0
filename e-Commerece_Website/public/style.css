@@ -76,6 +76,24 @@ body {
   background-color: #333;
 }
 
+.profile_dropdown_button{
+  background-color: black;
+  border: none;
+  padding: 0;
+  color: white;
+}
+
+.after-login{
+  background-color: black;
+  color: white;
+  padding: 2px 12px;
+  border-radius: 4px;
+  text-transform: initial;
+}
+
+.profile_dropdown_button:hover{
+  background-color: black;
+}
 
 
 body {

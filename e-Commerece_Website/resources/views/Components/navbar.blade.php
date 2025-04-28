@@ -47,6 +47,9 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
+                                <a class="nav-link" href="/signup" id="dropdownShop" aria-expanded="false">Products</a>
+                            </li>
+                            <li class="nav-item dropdown">
                                 <a class="nav-link" href="/signup" id="dropdownShop" aria-expanded="false">Register</a>
                             </li>
                             {{-- <li class="nav-item dropdown">
@@ -140,6 +143,32 @@
                                 class="cart-count">(0)</span>
                         </a>
                     </li>
+                    @can('isLogin')
+                        <li class="after-login d-none d-lg-block">
+                            <div class="dropdown profile_dropdown_div" style="position: relative; display: inline-block;">
+                                <a class="btn btn-secondary dropdown-toggle profile_dropdown_button" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Hi-{{ Auth::user()->name }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="profileDropdown" style="position: absolute;">
+                                    <li><a class="dropdown-item" href="">Profile</a></li>
+                                    <li><a class="dropdown-item" href="">Settings</a></li>
+                                    <li><a class="dropdown-item" href="">Dashboard</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form action="/logout" method="POST" style="margin: 0;">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endcan
+                    @cannot('isLogin')
+                        <li class="d-none d-lg-block">
+                            <a href="{{route('login')}}" class="text-uppercase mx-3" ><span style="text-transform: initial">Login</a>
+                        </li>
+                    @endcannot
                     <li class="d-lg-none">
                         <a href="#" class="mx-2">
                             <svg width="24" height="24" viewBox="0 0 24 24">
