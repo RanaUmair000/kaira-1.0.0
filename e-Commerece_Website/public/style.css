@@ -95,6 +95,165 @@ body {
   background-color: black;
 }
 
+.products_grid{
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  gap: 20px;
+  justify-content: center;
+  row-gap: 50px;
+  margin-top: 60px;
+}
+
+.products_pagination{
+  width: 93%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+@media only screen and (max-width: 992px){
+  .products_grid{
+    grid-template-columns: 45% 45%;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .products_grid{
+    grid-template-columns: 90%;
+  }
+}
+
+
+/* Admin Page CSS */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.table{
+  --bs-table-color: black;
+}
+
+.admin_container div{
+  font-family: "Jost", Roboto, sans-serif;
+  color: black;
+}
+
+.sidebar {
+  background-color: black;
+  min-height: 100vh;
+  padding-top: 20px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 15px;
+  display: block;
+  font-size: 16px;
+}
+
+.sidebar a:hover, .sidebar .active {
+  background-color: #1f2a30;
+}
+
+.dashboard-card {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.dashboard-card .card-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.dashboard-card .card-value {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header {
+  background-color: #343a40;
+  color: #fff;
+  padding: 15px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    width: 220px;
+    left: -220px;
+    top: 0;
+    height: 100%;
+    transition: left 0.3s;
+    z-index: 1050;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1040;
+  }
+
+  .overlay.show {
+    display: block;
+  }
+
+  .content {
+    margin-left: 0 !important;
+  }
+}
+
+/* Products Management */
+.product_manage_table{
+  width: 100%;
+}
+
+.table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.btn-add {
+  float: right;
+}
+
+.action-buttons .btn {
+  margin-right: 5px;
+}
+
+@media (max-width: 576px) {
+  .btn-add {
+    float: none;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+
+.settings-card {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 25px;
+  margin-top: 20px;
+}
+
+.settings-card label{
+  font-weight: 500;
+}
+
 
 body {
   --heading-font: "Marcellus", Roboto, sans-serif;

@@ -3,7 +3,7 @@
         <div class="row justify-content-between align-items-center w-100">
 
             <div class="col-auto">
-                <a class="navbar-brand text-white" href="index.html">
+                <a class="navbar-brand text-white" href="{{route('home')}}">
                     <svg width="112" height="45" viewBox="0 0 112 45" xmlns="http://www.w3.org/2000/svg"
                         fill="#111">
                         <path
@@ -47,11 +47,13 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="/signup" id="dropdownShop" aria-expanded="false">Products</a>
+                                <a class="nav-link" href="/products" id="dropdownShop" aria-expanded="false">Products</a>
                             </li>
+                            @cannot('isLogin')
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="/signup" id="dropdownShop" aria-expanded="false">Register</a>
                             </li>
+                            @endcannot
                             {{-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdownBlog"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
@@ -152,7 +154,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="profileDropdown" style="position: absolute;">
                                     <li><a class="dropdown-item" href="">Profile</a></li>
                                     <li><a class="dropdown-item" href="">Settings</a></li>
-                                    <li><a class="dropdown-item" href="">Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="/admin/dashboard">Dashboard</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <form action="/logout" method="POST" style="margin: 0;">
