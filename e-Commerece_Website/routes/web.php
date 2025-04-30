@@ -42,17 +42,29 @@ Route::get('admin/dashboard', function(){
     return view('Admin_Pages.dashboard');
 })->middleware('admin');
 
-Route::get('/admin/products_management', function(){
-    return view('Admin_Pages.products');
+Route::get('/admin/products_management', [Products::class, 'show_products_for_admin'])->middleware('admin');
+
+Route::get('/admin/add_products', function(){action: 
+    return view('Main_Pages.add_product');
 })->middleware('admin');
+
+Route::post('/admin/product_added', [Products::class, 'add_products'])->middleware('admin')->name('product_added');
+
+Route::get('/admin/delete_product/{id}', [Products::class, 'delete_product'])->middleware('admin')->name('delete_product');
 
 Route::get('/admin/orders_management', function(){
     return view('Admin_Pages.orders');
 })->middleware('admin');
 
-Route::get('admin/users_management', function(){
-    return view('Admin_Pages.users');
-})->middleware('admin');
+Route::get('admin/users_management', [UserController::class, 'show_users_for_admin'])->middleware('admin');
+
+Route::get('admin/add_user', function(){
+    return view('Admin_Pages.add_user');
+});
+
+Route::post('admin/user_added', [UserController::class, 'add_user_for_admin'])->name('user_added');
+
+Route::get('admin/delete_user/{id}', [UserController::class, 'delete_user'])->name('delete_user');
 
 Route::get('admin/settings', function(){
     return view('Admin_Pages.settings');

@@ -255,6 +255,23 @@ body {
 }
 
 
+/* Add Product */
+.form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #fff;
+  color: black;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.form-container h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  font-family: "Marcellus", Roboto, sans-serif;;
+}
+
+
 body {
   --heading-font: "Marcellus", Roboto, sans-serif;
   --heading-font-weight: 400;

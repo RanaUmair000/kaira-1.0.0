@@ -30,27 +30,29 @@
     <h1 class="text-center" style="font-size: 54px;">All Products</h1>
 
     <div class="products_grid">
-        @foreach($products as $product)        
-            <div class="product-item image-zoom-effect link-effect">
-                <div class="image-holder position-relative">
-                    <a href="/home">
-                        <img src="storage{{$product->product_image}}" alt="categories"
-                            class="product-image img-fluid">
-                    </a>
-                    <a href="index.html" class="btn-icon btn-wishlist">
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                            <use xlink:href="#heart"></use>
-                        </svg>
-                    </a>
-                    <div class="product-content">
-                        <h5 class="element-title text-uppercase fs-5 mt-3">
-                            <a href="index.html">{{$product->product_name}}</a>
-                        </h5>
-                        <a href="#" class="text-decoration-none"
-                            data-after="Add to cart"><span>{{$product->product_price}}</span></a>
+        @foreach($products as $product)
+            @if($product->status != 0)   
+                <div class="product-item image-zoom-effect link-effect">
+                    <div class="image-holder position-relative">
+                        <a href="/home">
+                            <img src="storage/{{$product->product_image}}" alt="categories"
+                                class="product-image img-fluid">
+                        </a>
+                        <a href="index.html" class="btn-icon btn-wishlist">
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                                <use xlink:href="#heart"></use>
+                            </svg>
+                        </a>
+                        <div class="product-content">
+                            <h5 class="element-title text-uppercase fs-5 mt-3">
+                                <a href="index.html">{{$product->product_name}}</a>
+                            </h5>
+                            <a href="#" class="text-decoration-none"
+                                data-after="Add to cart"><span>{{$product->product_price}}$</span></a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif  
         @endforeach
     </div>
 

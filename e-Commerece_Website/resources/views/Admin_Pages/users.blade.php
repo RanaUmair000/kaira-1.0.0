@@ -22,49 +22,22 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Role</th>
-                  <th>Status</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <!-- Sample Users -->
-                <tr>
-                  <td>1</td>
-                  <td>Ali Khan</td>
-                  <td>ali@example.com</td>
-                  <td>Admin</td>
-                  <td><span class="badge bg-success status-badge">Active</span></td>
-                  <td class="action-buttons">
-                    <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                    <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Sara Yousuf</td>
-                  <td>sara@example.com</td>
-                  <td>Customer</td>
-                  <td><span class="badge bg-warning text-dark status-badge">Pending</span></td>
-                  <td class="action-buttons">
-                    <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                    <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Usman Tariq</td>
-                  <td>usman@example.com</td>
-                  <td>Seller</td>
-                  <td><span class="badge bg-secondary status-badge">Inactive</span></td>
-                  <td class="action-buttons">
-                    <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                    <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <!-- More users -->
+                @foreach($users as $user)
+                  <tr>
+                    <td>{{$user->id}}</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->role}}</td>
+                    <td class="action-buttons">
+                      <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                      <a href="{{route('delete_user', $user->id)}}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

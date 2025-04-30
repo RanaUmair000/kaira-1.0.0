@@ -6,9 +6,11 @@
         <h4 style="color: white;">Manage Products</h4>
     </div>
 
-    <a href="#" style="margin-top: 20px; margin-bottom: 20px;" class="btn btn-success btn-add">
+    <a href="/admin/add_products" style="margin-top: 20px; margin-bottom: 20px;" class="btn btn-success btn-add">
         <i class="fas fa-plus-circle"></i> Add Product
     </a>
+
+    
 
     <div class="card product_manage_table">
         <div class="card-header bg-light">
@@ -30,33 +32,29 @@
               </thead>
               <tbody>
                 <!-- Sample Product Row -->
-                <tr>
-                  <td>1</td>
-                  <td><img src="https://via.placeholder.com/50" alt="Product Image"></td>
-                  <td>Baggy T-Shirt</td>
-                  <td>$25.00</td>
-                  <td>45</td>
-                  <td><span class="badge bg-success">Active</span></td>
-                  <td class="action-buttons">
-                    <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td><img src="https://via.placeholder.com/50" alt="Product Image"></td>
-                  <td>Dark Florish Onepiece</td>
-                  <td>$40.00</td>
-                  <td>30</td>
-                  <td><span class="badge bg-secondary">Inactive</span></td>
-                  <td class="action-buttons">
-                    <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <!-- Add more rows here dynamically -->
+                @foreach($products as $product)
+                  <tr>
+                    <td>{{$product->id}}</td>
+                    <td><img src="/storage/{{$product->product_image}}" alt="Product Image"></td>
+                    <td>{{$product->product_name}}</td>
+                    <td>${{$product->product_price}}</td>
+                    <td>{{$product->stock}}</td>
+                    @if($product->status == 1)
+                      <td><span class="badge bg-success">Active</span></td>
+                    @elseif($product->status == 0)
+                    <td><span class="badge bg-danger">Inactive</span></td>
+                    @endif
+                    <td class="action-buttons">
+                      <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                      <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                      <a href="{{route('delete_product', $product->id)}}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                  </tr>
+                @endforeach
               </tbody>
+              
             </table>
+            <div class="products_pagination">{{$products->links()}}</div>
           </div>
         </div>
       </div>
