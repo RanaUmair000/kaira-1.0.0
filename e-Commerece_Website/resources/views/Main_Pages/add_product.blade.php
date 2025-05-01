@@ -38,6 +38,15 @@
         </div>
 
         <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select class="form-select" id="status" name="product_category" required>
+          @foreach($cates as $cate)
+            <option value="{{$cate->id}}" selected>{{$cate->category_name}}</option>
+          @endforeach
+          </select>
+        </div>
+
+        <div class="mb-3">
           <label for="product_image" class="form-label">Product Image</label>
           <input type="file" class="form-control" id="product_image" name="product_image" accept="image/*" required />
         </div>

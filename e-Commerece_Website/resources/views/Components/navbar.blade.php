@@ -140,11 +140,16 @@
                         </a>
                     </li>
                     <li class="d-none d-lg-block">
-                        <a href="index.html" class="text-uppercase mx-3" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">Cart <span
-                                class="cart-count">(0)</span>
+                        <a href="/cart" class="text-uppercase mx-3">Cart <span
+                                class="wishlist-count">({{$cartCount}})</span>
                         </a>
                     </li>
+                    {{-- <li class="d-none d-lg-block">
+                        <a href="/cart" class="text-uppercase mx-3" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">Cart <span
+                                class="cart-count">({{$cartCount}})</span>
+                        </a>
+                    </li> --}}
                     @can('isLogin')
                         <li class="after-login d-none d-lg-block">
                             <div class="dropdown profile_dropdown_div" style="position: relative; display: inline-block;">

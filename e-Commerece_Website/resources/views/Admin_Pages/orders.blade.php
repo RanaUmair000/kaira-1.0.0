@@ -24,41 +24,19 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- Sample Orders -->
+              @foreach($orders as $order)
                 <tr>
-                  <td>#1001</td>
-                  <td>John Doe</td>
-                  <td>2025-04-25</td>
+                  <td>#{{$order->id}}</td>
+                  <td>{{$order->order_name}}</td>
+                  <td>{{$order->order_date}}</td>
                   <td><span class="badge bg-warning status-badge">Pending</span></td>
-                  <td>$150.00</td>
+                  <td>${{$order->order_price}}</td>
                   <td class="action-buttons">
                     <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
                     <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
-                <tr>
-                  <td>#1002</td>
-                  <td>Jane Smith</td>
-                  <td>2025-04-24</td>
-                  <td><span class="badge bg-success status-badge">Completed</span></td>
-                  <td>$230.00</td>
-                  <td class="action-buttons">
-                    <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>#1003</td>
-                  <td>Ali Raza</td>
-                  <td>2025-04-23</td>
-                  <td><span class="badge bg-secondary status-badge">Cancelled</span></td>
-                  <td>$0.00</td>
-                  <td class="action-buttons">
-                    <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <!-- More rows can be added dynamically -->
+              @endforeach
               </tbody>
             </table>
           </div>

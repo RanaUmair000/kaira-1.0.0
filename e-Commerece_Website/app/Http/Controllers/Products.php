@@ -2,14 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Main_Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class Products extends Controller
 {
+    public function show_products_category(string $category){
+        $category_id = Main_Category::where('slug', $category)->select('id')->first();
+
+        if($category_id){
+            $products = Product::where('product_category', $category_id->id)->paginate(12, ['*']);
+            return view('Main_Pages.products', compact('products'));
+        }
+    }
+
     public function show_products(){
-        $products = Product::Paginate(12, ['*']);
+        $products = Product::paginate(12, ['*']);
         return view('Main_Pages.products', compact('products'));
     }
 
@@ -28,12 +38,18 @@ class Products extends Controller
         return redirect('/admin/products_management');
     }
 
+    public function show_product_detail(string $id){
+        $product = Product::find($id);
+        return view('Main_Pages.product_detail', compact('product'));
+    }
+
     public function add_products(Request $request){
         $credentials = $request->validate([
             "product_image" => "required|mimes:jpg, png, jpeg, gif|max: 3000"
         ]);
 
         $status = $request->input('status');
+        $category = $request->input('product_category');
 
         if($credentials){
             $file_name = $request->file('product_image')->getClientOriginalName();
@@ -45,16 +61,18 @@ class Products extends Controller
                 'product_price' => $request->product_price,
                 'product_image' => $path,
                 'stock' => $request->stock,
-                'status' => $status
+                'status' => $status,
+                'product_category' => $category
             ]);
 
-            return $product;
+            redirect('/admin/products_management');
 
         }
     }
+
+    public function order_product(string $id){
+        $product = Product::find($id);
+        return view('Main_Pages.order_now', compact('product'));
+    }
+
 }
-
-// Elevate your style with the Dark Florish Onepiece — a perfect blend of elegance and comfort. Crafted from soft, breathable fabric, this dress features a rich dark tone adorned with subtle floral patterns, offering a timeless and sophisticated look. Ideal for evening outings, casual gatherings, or sp
-
-
-// Stay comfortable and stylish with our Baggy T-Shirt — the perfect blend of relaxed fit and modern streetwear. Made from soft, breathable cotton, this tee is designed for all-day comfort with a loose, oversized silhouette that suits every body type. Whether you're lounging at home or heading out, thi

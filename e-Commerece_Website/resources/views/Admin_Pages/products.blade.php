@@ -10,8 +10,6 @@
         <i class="fas fa-plus-circle"></i> Add Product
     </a>
 
-    
-
     <div class="card product_manage_table">
         <div class="card-header bg-light">
           Product List
@@ -45,7 +43,7 @@
                     <td><span class="badge bg-danger">Inactive</span></td>
                     @endif
                     <td class="action-buttons">
-                      <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                      <a href="{{route('product_detail', $product->id)}}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
                       <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                       <a href="{{route('delete_product', $product->id)}}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                     </td>

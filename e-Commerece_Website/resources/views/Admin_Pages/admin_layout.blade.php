@@ -35,6 +35,8 @@
         <div class="text-white text-center py-3 d-none d-md-block fs-5">Admin Panel</div>
         <a href="/admin/dashboard" class="{{ Request::is('admin/dashboard') ? 'active' : 'k' }}"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a>
 
+        <a href="/admin/categories" class="{{ Request::is('admin/categories') ? 'active' : 'k' }}"><i class="fas fa-box me-2"></i> Categoreis</a>
+
         <a href="/admin/products_management" class="{{ Request::is('admin/products_management') ? 'active' : 'k' }}"><i class="fas fa-box me-2"></i> Products</a>
 
         <a href="/admin/settings" class="{{ Request::is('admin/settings') ? 'active' : 'k' }}"><i class="fas fa-cogs me-2"></i> Settings</a>

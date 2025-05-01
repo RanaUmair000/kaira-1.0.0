@@ -63,6 +63,25 @@ class UserController extends Controller
         return view('Admin_Pages.users', compact('users'));
     }
 
+    public function update_users_for_admin(string $id){
+
+        $user = User::find($id);
+        return view('Admin_Pages.update_user', compact('user'));
+
+    }
+
+    public function user_updated(Request $request){
+        $user = User::where('id', $request->user_id)->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
+        if($user){
+            return redirect('/admin/users_management');
+        }
+
+    }
+
     public function login_user(Request $request){
         $credentials = $request->validate([
             "email" => "required|string",

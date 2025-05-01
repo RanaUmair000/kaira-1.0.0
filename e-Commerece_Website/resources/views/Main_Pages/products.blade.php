@@ -22,7 +22,7 @@
         href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Marcellus&display=swap"
         rel="stylesheet">
     
-    <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="{{ asset('./style.css') }}">
 </head>
 <body>
     @include('Components.navbar')
@@ -34,8 +34,8 @@
             @if($product->status != 0)   
                 <div class="product-item image-zoom-effect link-effect">
                     <div class="image-holder position-relative">
-                        <a href="/home">
-                            <img src="storage/{{$product->product_image}}" alt="categories"
+                        <a href="{{route('product_detail', $product->id)}}">
+                            <img src="{{ asset('storage/' . $product->product_image) }}" alt="categories"
                                 class="product-image img-fluid">
                         </a>
                         <a href="index.html" class="btn-icon btn-wishlist">

@@ -33,7 +33,8 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->role}}</td>
                     <td class="action-buttons">
-                      <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                      <a href="{{route('update_user_for_admin', $user->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+
                       <a href="{{route('delete_user', $user->id)}}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                     </td>
                   </tr>
