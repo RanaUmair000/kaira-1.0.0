@@ -28,9 +28,19 @@ class MainCateController extends Controller
     public function category_added(Request $request){
         $slug = Str::slug($request->cate_name);
 
+        $credentials = $request->validate([
+            'category_image' => 'required|mimes:jpg,png,jpeg,gif|max:3000',
+        ]);
+
+        $file = $request->file('category_image');
+        $file_name = time() . '_' . $file->getClientOriginalName();
+
+        $path = $file->storeAs('category', $file_name, 'public');
+
         $category = Main_Category::create([
             'category_name' => $request->cate_name,
-            'slug' => $slug
+            'slug' => $slug,
+            'category_image' => $path, 
         ]);
 
         return redirect('/admin/categories');

@@ -41,9 +41,9 @@
 
     @include('Homepage_Sections.features')
 
-    @include('Homepage_Sections.categories')
+    @include('Homepage_Sections.categories', [$allCategories, $allCategories])
 
-    @include('Homepage_Sections.new_arrivals')
+    @include('Homepage_Sections.new_arrivals', [$newArrivals, $newArrivals])
     
     @include('Homepage_Sections.collections')
 
@@ -53,7 +53,7 @@
 
     @include('Homepage_Sections.testimonial')
     
-    @include('Homepage_Sections.related_products')
+    @include('Homepage_Sections.related_products', [$mayLike, $mayLike])
 
     @include('Homepage_Sections.blogs')
 

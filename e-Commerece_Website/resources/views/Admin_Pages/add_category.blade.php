@@ -19,11 +19,16 @@
   <div class="main-container">
   <div class="signup-container">
       <h3 class="text-center mb-4">Add Category</h3>
-      <form action="{{route('category_added')}}" method="POST">
+      <form action="{{route('category_added')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
           <label for="cate_name" class="form-label umair">Category Name</label>
           <input type="text" class="form-control" name="cate_name" id="name" placeholder="Enter Category Name" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="category_image" class="form-label">Product Image</label>
+          <input type="file" class="form-control" id="product_image" name="category_image" accept="image/*" required />
         </div>
         
   

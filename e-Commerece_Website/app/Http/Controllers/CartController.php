@@ -24,6 +24,8 @@ class CartController extends Controller
             'product_price' => $request->product_price,
             'quantity' => 1
         ]);
+
+        return redirect('/cart');
     }
 
 

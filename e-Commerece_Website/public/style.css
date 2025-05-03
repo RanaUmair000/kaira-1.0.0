@@ -604,6 +604,347 @@ transition: 0.3s ease;
 }
 
 
+/* Order Details Page */
+
+.order_details_body {
+  margin: 0;
+  padding: 0;
+  color: #222;
+  animation: fadeIn 1.2s ease-in;
+}
+
+.order-detail-container {
+  max-width: 960px;
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 35px 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  animation: slideUp 0.8s ease;
+}
+
+.order-detail-container p{
+  font-size: 16px;
+}
+
+.order-detail-container .title {
+  color: #000;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.order-detail-container .subtitle {
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.order-detail-container .progress-bar {
+  background-color: #ddd;
+  border-radius: 20px;
+  height: 10px;
+  overflow: hidden;
+  margin: 25px 0;
+}
+
+.progress-fill {
+  background-color: #000;
+  height: 100%;
+  width: 70%;
+  transition: width 1s ease-in-out;
+}
+
+.status-steps {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.status-steps .active {
+  color: #000;
+  font-weight: 600;
+}
+
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  text-align: center;
+  animation: fadeIn 1.4s ease;
+}
+
+.timeline-step {
+  transition: transform 0.3s;
+}
+
+.timeline-step i {
+  font-size: 1.8rem;
+  color: #000;
+}
+
+.timeline-step p {
+  margin-top: 6px;
+  font-size: 0.88rem;
+}
+
+.timeline-step:hover {
+  transform: scale(1.05);
+}
+
+.order-detail-container .section {
+  margin-top: 30px;
+}
+
+.order-detail-container .section h4 {
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 12px;
+}
+
+.order-detail-container .info-box {
+  background-color: #f7f7f7;
+  padding: 18px 25px;
+  border-radius: 8px;
+  border-left: 4px solid #000;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.order-detail-container .info-box p {
+  margin: 5px 0;
+  color: #444;
+}
+
+.btn-track {
+  display: inline-block;
+  margin-top: 30px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn-track:hover {
+  background-color: #222;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+
+
+
+/* My Orders Page */
+.my-order-container .sidebar {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.order__container{
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  height: 100vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.my-order-container p{
+  font-size: 16px;
+}
+
+.my-order-container .sidebar h5 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.my-order-container .sidebar a {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.my-order-container .sidebar a i {
+  margin-right: 10px;
+  color: black;
+}
+
+.my-order-container .sidebar a:hover, .my-order-container .sidebar a.active {
+  background-color: #f2f2f2;
+  color: black;
+  font-weight: 500;
+}
+
+.my-order-container .order-card {
+  background: white;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.my-order-container .order-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.my-order-container .order-header .status {
+  font-weight: 600;
+  color: #28a745;
+}
+
+.my-order-container .order-product {
+  display: flex;
+  gap: 15px;
+}
+
+.my-order-container .order-product img {
+  width: 100px;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.my-order-container .order-details h6 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.my-order-container .order-actions {
+  margin-top: 15px;
+  text-align: right;
+}
+
+.my-order-container .order-actions .btn {
+  margin-left: 8px;
+}
+
+.my-order-container .main-title {
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 25px;
+  font-size: 36px;
+}
+
+@media (max-width: 768px) {
+    .my-order-container .order-product {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .my-order-container .order-actions {
+    text-align: center;
+  }
+}
+
+
+/* Profile Page */
+.profile-card {
+  margin-top: 60px;
+  padding: 30px;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.profile-card:hover {
+  transform: translateY(-5px);
+}
+.profile-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+}
+.profile-role {
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+.info-label {
+  font-weight: 600;
+  color: #343a40;
+}
+.info-value {
+  color: #6c757d;
+}
+.btn-black {
+  background-color: #000;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+.btn-black:hover {
+  background-color: #333;
+}
+.social-icons i {
+  font-size: 1.5rem;
+  margin: 0 10px;
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+.social-icons i:hover {
+  color: #000;
+}
+
+/* Edit Profile */
+.edit-container .card {
+  border-radius: 15px;
+}
+.edit-container .form-label {
+  font-weight: 500;
+}
+.edit-container h3 {
+  color: #000;
+  font-weight: 600;
+}
+.edit-container .btn-black {
+  background-color: #000;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+.edit-container .btn-black:hover {
+  background-color: #333;
+}
+.edit-container .btn-outline-dark {
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+.edit-container input.form-control,.edit-container textarea.form-control {
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  transition: border-color 0.2s ease;
+}
+.edit-container input.form-control:focus, .edit-container textarea.form-control:focus {
+  border-color: #000;
+  box-shadow: none;
+}
+
+
 body {
   --heading-font: "Marcellus", Roboto, sans-serif;
   --heading-font-weight: 400;

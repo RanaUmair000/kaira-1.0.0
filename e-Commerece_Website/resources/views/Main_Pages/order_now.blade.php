@@ -27,16 +27,24 @@
         <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
 
         <div class="section">
-            <h2>1. Order Summary</h2>
-            <div class="summary-box" style="display: flex; align-items: center; gap: 15px;">
-                <img id="productImage" src="/storage/{{$product->product_image}}" alt="Product" style="width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid #ccc;">
-                <div style="flex: 1;">
-                <p><strong>Product:</strong> <span id="productName">{{$product->product_name}}</span></p>
-                <label for="quantity"><strong>Quantity:</strong></label>
-                <input type="number" id="quantity" name="quantity" value="1" min="1" required style="width: 60px; margin-left: 10px;">
-                </div>
-            </div>
-            </div>
+          <h2>1. Order Summary</h2>
+          <div class="summary-box d-flex align-items-center gap-3">
+              <img id="productImage" src="/storage/{{$product->product_image}}" alt="Product"
+                  class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;">
+              <div class="flex-grow-1">
+                  <p><strong>Product:</strong> <span id="productName">{{$product->product_name}}</span></p>
+                  <div class="mb-2">
+                      <label for="quantity" class="form-label"><strong>Quantity:</strong></label>
+                      <input type="number" id="quantity" name="quantity" class="form-control d-inline-block w-auto ms-2"
+                          value="1" min="1" required>
+                      <input type="hidden" id="unitPrice" value="{{$product->product_price}}" name="order_price">
+                  </div>
+                  <div class="alert alert-secondary py-2 px-3" role="alert">
+                      <strong>Subtotal:</strong> <span id="subtotalDisplay">Rs {{$product->product_price}}</span>
+                  </div>
+              </div>
+          </div>
+        </div>
 
       <!-- Customer Info -->
       <div class="section">
@@ -93,6 +101,25 @@
   </div>
 
     @include('Homepage_Sections.footer')
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          const quantityInput = document.getElementById('quantity');
+          const unitPrice = parseFloat(document.getElementById('unitPrice').value);
+          const subtotalDisplay = document.getElementById('subtotalDisplay');
+          const orderPriceInput = document.getElementById('unitPrice'); // hidden input
+    
+          function updateSubtotal() {
+              const qty = parseInt(quantityInput.value) || 1;
+              const subtotal = qty * unitPrice;
+              subtotalDisplay.textContent = `Rs ${subtotal.toFixed(2)}`;
+              orderPriceInput.value = subtotal.toFixed(2); // update hidden input value
+          }
+    
+          quantityInput.addEventListener('input', updateSubtotal);
+          updateSubtotal(); // initialize on load
+      });
+    </script>
 
 </body>
 </html>

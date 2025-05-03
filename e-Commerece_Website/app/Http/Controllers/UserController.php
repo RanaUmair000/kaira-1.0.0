@@ -35,6 +35,55 @@ class UserController extends Controller
 
     }
 
+    public function user_profile(){
+
+        $user = User::find(Auth::id());
+
+        return view('Main_Pages.profile', compact('user'));
+    }
+
+    public function edit_profile(){
+        $user = User::find(Auth::id());
+
+        return view("Main_Pages.edit_profile", compact('user'));
+    }
+
+    public function update_profile(Request $request){
+        $user = User::where('id', Auth::id())->update([
+            "name" => $request->name,
+            "email" => $request->email,
+            "location" => $request->location,
+            "user_phone" => $request->phone
+        ]);
+
+        return redirect('/user_profile');
+    }
+
+    public function check_pass_to_change_pass(Request $request){
+
+        $canChangePassword = false;
+        if(Hash::check($request->old_password, Auth::user()->password)){
+            $canChangePassword = true;
+            return view('Main_Pages.change_pass', compact('canChangePassword'));
+        }else{
+            $user = User::find(Auth::id());
+            return view('Main_Pages.profile', compact('canChangePassword','user'))->with('message', 'Wrong Password');
+        }
+
+    }
+
+    public function password_changed(Request $request){
+
+        $new_password = $request->change_password;
+        $hashed_password = Hash::make($new_password);
+        $user = User::where('id', Auth::id())->update([
+            "password" => $hashed_password
+        ]);
+
+        return redirect('/user_profile');
+
+    }
+
     public function add_user_for_admin(Request $request){
         $credentials = $request->validate([
             "name" => "required|string",

@@ -37,41 +37,81 @@
         </p>
 
         <div class="buttons">
-          <a href="{{route('order_now', $product->id)}}"><button class="btn-buy">Order Now</button></a>
+          @can('isLogin')
+            <a href="{{route('order_now', $product->id)}}"><button class="btn-buy">Order Now</button></a>
+          @else
+            <a href="/login"><button class="btn-buy">Order Now</button></a>
+          @endcan
+          
 
-          <form action="{{route('added_to_cart', $product->id)}}" method="POST">
-            @csrf
-            <input type="hidden" name="product_id" value="{{$product->id}}">
-            <input type="hidden" name="product_name" value="{{$product->product_name}}">
-            <input type="hidden" name="product_price" value="{{$product->product_price}}">
-            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-            <button type="submit" class="btn-cart">Add to Cart</button>
-          </form>
+          @can('isLogin')
+            <form action="{{route('added_to_cart', $product->id)}}" method="POST">
+              @csrf
+              <input type="hidden" name="product_id" value="{{$product->id}}">
+              <input type="hidden" name="product_name" value="{{$product->product_name}}">
+              <input type="hidden" name="product_price" value="{{$product->product_price}}">
+              <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+              <button type="submit" class="btn-cart">Add to Cart</button>
+            </form>
+          @else
+            <a href="/login"><button type="submit" class="btn-cart">Add to Cart</button></a>
+          @endcan
+
+          
         </div>
       </div>
     </div>
 
-    <div class="reviews-section">
-      <h2>Customer Reviews</h2>
-
-      <div class="review">
-        <div class="reviewer">Ali Raza</div>
-        <div class="stars">★★★★★</div>
-        <p>Excellent sound quality and battery life. Totally worth the price!</p>
+    <div class="container my-5">
+      <h4 class="mb-4">Customer Reviews</h4>
+      <div class="mb-4">
+        <div class="border-bottom pb-3 mb-3">
+          <div class="d-flex justify-content-between">
+            <strong>John Doe</strong>
+            <small class="text-muted">2025-05-01</small>
+          </div>
+          <div class="text-warning mb-1">
+            ★★★★☆
+          </div>
+          <p class="mb-0">Great product, fast delivery. Would buy again!</p>
+        </div>
+    
+        <div class="border-bottom pb-3 mb-3">
+          <div class="d-flex justify-content-between">
+            <strong>Jane Smith</strong>
+            <small class="text-muted">2025-04-28</small>
+          </div>
+          <div class="text-warning mb-1">
+            ★★★★★
+          </div>
+          <p class="mb-0">Exceeded expectations. Quality is top-notch!</p>
+        </div>
       </div>
-
-      <div class="review">
-        <div class="reviewer">Sarah Khan</div>
-        <div class="stars">★★★★☆</div>
-        <p>Comfortable to wear. Noise cancellation is decent for the price range.</p>
-      </div>
-
-      <div class="review">
-        <div class="reviewer">Usman Tariq</div>
-        <div class="stars">★★★☆☆</div>
-        <p>Good overall but the bass could be better.</p>
-      </div>
+    
+      <h5>Add Your Review</h5>
+      <form action="/submit_review" method="POST">
+        <!-- Include @csrf if using Blade -->
+        <div class="mb-3">
+          <label for="rating" class="form-label">Rating</label>
+          <select class="form-select" id="rating" name="rating" required>
+            <option value="">Select rating</option>
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★</option>
+            <option value="3">★★★</option>
+            <option value="2">★★</option>
+            <option value="1">★</option>
+          </select>
+        </div>
+    
+        <div class="mb-3">
+          <label for="comment" class="form-label">Your Comment</label>
+          <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+        </div>
+    
+        <button type="submit" class="btn btn-dark">Submit Review</button>
+      </form>
     </div>
+    
   </div>
 
   @include('Homepage_Sections.footer')

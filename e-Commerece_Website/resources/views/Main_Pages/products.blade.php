@@ -27,11 +27,17 @@
 <body>
     @include('Components.navbar')
 
-    <h1 class="text-center" style="font-size: 54px;">All Products</h1>
+    <h1 class="text-center" style="font-size: 54px;">
+        @if(!empty($category_set))
+            Showing Products in: <strong>{{$category_set}}</strong>
+        @else
+            All Products
+        @endif
+    </h1>
 
     <div class="products_grid">
         @foreach($products as $product)
-            @if($product->status != 0)   
+            @if($product->status != 0 && $products->isNotEmpty())   
                 <div class="product-item image-zoom-effect link-effect">
                     <div class="image-holder position-relative">
                         <a href="{{route('product_detail', $product->id)}}">
@@ -52,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-            @endif  
+            @endif
         @endforeach
     </div>
 

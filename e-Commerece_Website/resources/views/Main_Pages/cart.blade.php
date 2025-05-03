@@ -43,16 +43,16 @@
                 
                 <div class="col-lg-8">
                     @foreach($iitems as $item)
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 product-card">
                             <div class="cart-item d-flex align-items-center">
                             <img src="/storage/{{$item->product_image}}" alt="Product" class="me-3">
                             <div class="flex-grow-1 product-info">
                                 <h5>{{$item->product_name}}</h5>
                                 <small class="d-block mb-1"><i class="bi bi-headphones me-1"></i>Category</small>
-                                <span class="price-tag text-primary">${{$item->product_price}}</span>
+                                <span class="price-tag text-primary item-price">${{$item->product_price}}</span>
                                 <div class="input-group quantity-input mt-2" style="max-width: 140px;">
                                 <button class="btn btn-outline-secondary btn-icon">-</button>
-                                <input style="padding-bottom: 0;" type="text" class="form-control text-center" value="1">
+                                <input style="padding-bottom: 0;" type="text" class="form-control text-center item-q" value="{{$item->quantity}}">
                                 <button class="btn btn-outline-secondary btn-icon">+</i></button>
                                 </div>
                             </div>
@@ -60,12 +60,8 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
-                
-
-                
+                </div>                
             </div>
-        
     @else  
         <h4>To see your cart, Please Login.</h4>
     @endcan
@@ -76,11 +72,34 @@
 
     <script>
         const subTotalElement = document.querySelector('.sub_total');
-        const subTotal = parseFloat(subTotalElement.textContent.replace(/[^0-9.]/g, ''));
+        
         const shipFeeElement = document.querySelector('.ship_fee');
         const shipFee = parseFloat(shipFeeElement.textContent.replace(/[^0-9.]/g, ''));
         const totalElement = document.querySelector('.total_price');
         const total = parseFloat(totalElement.textContent.replace(/[^0-9.]/g, ''));
+        const productCards = document.querySelectorAll('.product-card');
+
+        let minGrandTotal = 0; 
+
+        productCards.forEach(card => {
+            const priceElement = card.querySelector('.item-price');
+            const quantityInput = card.querySelector('.item-q');
+
+            const price = parseFloat(priceElement.textContent.replace(/[^0-9.]/g, ''));
+            const quantity = parseInt(card.querySelector('.item-q').value, 10);;
+
+            console.log(price, quantity);
+
+            const total = price * quantity;
+
+
+            priceElement.textContent = `$${total.toFixed(2)}`;
+
+            minGrandTotal += total;
+        });
+
+        subTotalElement.textContent = minGrandTotal;
+        const subTotal = parseFloat(subTotalElement.textContent.replace(/[^0-9.]/g, ''));
 
         final_total = subTotal + shipFee;
         totalElement.textContent = "$" + final_total;

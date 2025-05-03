@@ -2,15 +2,16 @@
     <div class="container">
         <div class="d-flex flex-wrap justify-content-between align-items-center mt-5 mb-3">
             <h4 class="text-uppercase">Our New Arrivals</h4>
-            <a href="index.html" class="btn-link">View All Products</a>
+            <a href="/products" class="btn-link">View All Products</a>
         </div>
         <div class="swiper product-swiper open-up" data-aos="zoom-out">
             <div class="swiper-wrapper d-flex">
+            @foreach($newArrivals as $prod)
                 <div class="swiper-slide">
                     <div class="product-item image-zoom-effect link-effect">
                         <div class="image-holder position-relative">
-                            <a href="index.html">
-                                <img src="images/product-item-1.jpg" alt="categories"
+                            <a href="{{route('product_detail', $prod->id)}}">
+                                <img src="{{asset('/storage/' . $prod->product_image)}}" alt="categories"
                                     class="product-image img-fluid">
                             </a>
                             <a href="index.html" class="btn-icon btn-wishlist">
@@ -20,102 +21,27 @@
                             </a>
                             <div class="product-content">
                                 <h5 class="element-title text-uppercase fs-5 mt-3">
-                                    <a href="index.html">Dark florish onepiece</a>
+                                    <a href="{{route('product_detail', $prod->id)}}">{{$prod->name}}</a>
                                 </h5>
-                                <a href="#" class="text-decoration-none"
-                                    data-after="Add to cart"><span>$95.00</span></a>
+                                @can('isLogin')
+                                    <form action="{{route('added_to_cart', $prod->id)}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{$prod->id}}">
+                                        <input type="hidden" name="product_name" value="{{$prod->product_name}}">
+                                        <input type="hidden" name="product_price" value="{{$prod->product_price}}">
+                                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                        <button type="submit" style="background: none; border: none; outline: none; width: 50%; text-align: left;"><a class="text-decoration-none"
+                                            data-after="Add to cart"><span>${{$prod->product_price}}</span></a></button>
+                                    </form>
+                                @else
+                                    <button type="submit" style="background: none; border: none; outline: none; width: 50%; text-align: left;"><a href="/login" class="text-decoration-none"
+                                    data-after="Add to cart"><span>${{$prod->product_price}}</span></a></button>
+                                @endcan
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="product-item image-zoom-effect link-effect">
-                        <div class="image-holder position-relative">
-                            <a href="index.html">
-                                <img src="images/product-item-2.jpg" alt="categories"
-                                    class="product-image img-fluid">
-                            </a>
-                            <a href="index.html" class="btn-icon btn-wishlist">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <use xlink:href="#heart"></use>
-                                </svg>
-                            </a>
-                            <div class="product-content">
-                                <h5 class="text-uppercase fs-5 mt-3">
-                                    <a href="index.html">Baggy Shirt</a>
-                                </h5>
-                                <a href="#" class="text-decoration-none"
-                                    data-after="Add to cart"><span>$55.00</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product-item image-zoom-effect link-effect">
-                        <div class="image-holder position-relative">
-                            <a href="index.html">
-                                <img src="images/product-item-3.jpg" alt="categories"
-                                    class="product-image img-fluid">
-                            </a>
-                            <a href="index.html" class="btn-icon btn-wishlist">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <use xlink:href="#heart"></use>
-                                </svg>
-                            </a>
-                            <div class="product-content">
-                                <h5 class="text-uppercase fs-5 mt-3">
-                                    <a href="index.html">Cotton off-white shirt</a>
-                                </h5>
-                                <a href="#" class="text-decoration-none"
-                                    data-after="Add to cart"><span>$65.00</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product-item image-zoom-effect link-effect">
-                        <div class="image-holder position-relative">
-                            <a href="index.html">
-                                <img src="images/product-item-4.jpg" alt="categories"
-                                    class="product-image img-fluid">
-                            </a>
-                            <a href="index.html" class="btn-icon btn-wishlist">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <use xlink:href="#heart"></use>
-                                </svg>
-                            </a>
-                            <div class="product-content">
-                                <h5 class="text-uppercase fs-5 mt-3">
-                                    <a href="index.html">Crop sweater</a>
-                                </h5>
-                                <a href="#" class="text-decoration-none"
-                                    data-after="Add to cart"><span>$50.00</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product-item image-zoom-effect link-effect">
-                        <div class="image-holder position-relative">
-                            <a href="index.html">
-                                <img src="images/product-item-10.jpg" alt="categories"
-                                    class="product-image img-fluid">
-                            </a>
-                            <a href="index.html" class="btn-icon btn-wishlist">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <use xlink:href="#heart"></use>
-                                </svg>
-                            </a>
-                            <div class="product-content">
-                                <h5 class="text-uppercase fs-5 mt-3">
-                                    <a href="index.html">Crop sweater</a>
-                                </h5>
-                                <a href="#" class="text-decoration-none"
-                                    data-after="Add to cart"><span>$70.00</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
             </div>
             <div class="swiper-pagination"></div>
         </div>

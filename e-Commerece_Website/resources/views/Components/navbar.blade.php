@@ -54,6 +54,9 @@
                                 <a class="nav-link" href="/signup" id="dropdownShop" aria-expanded="false">Register</a>
                             </li>
                             @endcannot
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="/my_orders" id="dropdownShop" aria-expanded="false">My Orders</a>
+                            </li>
                             {{-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdownBlog"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>

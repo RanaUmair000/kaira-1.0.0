@@ -29,16 +29,30 @@
                   <td>#{{$order->id}}</td>
                   <td>{{$order->order_name}}</td>
                   <td>{{$order->order_date}}</td>
-                  <td><span class="badge bg-warning status-badge">Pending</span></td>
+                  @if($order->order_status == 0)
+                    <td><span class="badge bg-warning status-badge">Pending</span></td>
+                  @elseif($order->order_status == 1)
+                    <td><span class="badge bg-success status-badge">Shipped</span></td>
+                  @elseif($order->order_status == 2)
+                    <td><span class="badge bg-primary status-badge">Delieverd</span></td>
+                  @elseif($order->order_status == 3)
+                    <td><span class="badge bg-danger status-badge">Cancelled</span></td>
+                  @endif
                   <td>${{$order->order_price}}</td>
                   <td class="action-buttons">
-                    <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    <a href="{{route('order_details', $order->id)}}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                    <a href="{{route('delete_order', $order->id)}}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    @if($order->order_status == 0)
+                      <a href="{{route('shipped_order', $order->id)}}" class="btn btn-sm btn-success"><i class="fas fa-check"></i></a>
+                    @endif
+                    
                   </td>
                 </tr>
               @endforeach
               </tbody>
+              
             </table>
+            <div class="products_pagination">{{$orders->links()}}</div>
           </div>
         </div>
       </div>

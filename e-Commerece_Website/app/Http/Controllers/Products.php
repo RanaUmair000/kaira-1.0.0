@@ -10,11 +10,12 @@ use Illuminate\Support\Facades\Storage;
 class Products extends Controller
 {
     public function show_products_category(string $category){
-        $category_id = Main_Category::where('slug', $category)->select('id')->first();
+        $category_id = Main_Category::where('slug', $category)->select('*')->first();
 
         if($category_id){
             $products = Product::where('product_category', $category_id->id)->paginate(12, ['*']);
-            return view('Main_Pages.products', compact('products'));
+            $category_set = $category_id->category_name;
+            return view('Main_Pages.products', compact('products', 'category_set'));
         }
     }
 
