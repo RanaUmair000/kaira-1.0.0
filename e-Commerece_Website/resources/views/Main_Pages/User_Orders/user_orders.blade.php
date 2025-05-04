@@ -37,6 +37,9 @@
           </div>
 
           <div class="order-actions">
+            @if($order->order_status == 1)
+              <a href="{{route('order_delieverd', $order->order_id)}}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-box"></i> Add to Delieverd</a>
+            @endif
               <a href="{{route('order_details', $order->order_id)}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-eye"></i> View Details</a>
               <a href="{{route('product_detail', $order->id)}}" class="btn btn-outline-success btn-sm"><i class="fas fa-redo"></i> Buy Again</a>
               @if($order->order_status == 0)

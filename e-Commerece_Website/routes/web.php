@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainCateController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Products;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
@@ -112,3 +113,13 @@ Route::get('/cart', [CartController::class, 'show_cart_items']);
 Route::POST('/product_detail/{id}/added_to_cart', [CartController::class, 'add_to_cart'])->name('added_to_cart')->middleware('can:isLogin'); 
 
 Route::get('/cart/{id}', [CartController::class, 'remove_cart_item'])->name('delete_cart_item')->middleware('can:isLogin');
+
+
+
+Route::post('/product_detail/{string}/submit_review', [ReviewController::class, 'submit_review'])->middleware('can:isLogin')->name('submit_review');
+
+Route::get('/about', function(){
+    return view('Main_Pages.about');
+});
+
+Route::post('/search_product', [Products::class, 'show_products_search'])->name('search_product');

@@ -54,6 +54,8 @@
     </div>
   </div>
 
+  @include('Links.js')
+
   <script>
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('active');

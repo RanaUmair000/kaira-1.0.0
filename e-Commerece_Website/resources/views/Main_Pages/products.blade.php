@@ -30,6 +30,8 @@
     <h1 class="text-center" style="font-size: 54px;">
         @if(!empty($category_set))
             Showing Products in: <strong>{{$category_set}}</strong>
+        @elseif(!empty($keyword))
+            Search result for "{{$keyword}}"
         @else
             All Products
         @endif

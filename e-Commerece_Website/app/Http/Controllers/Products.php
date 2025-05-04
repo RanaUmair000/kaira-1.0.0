@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Main_Category;
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,6 +18,13 @@ class Products extends Controller
             $category_set = $category_id->category_name;
             return view('Main_Pages.products', compact('products', 'category_set'));
         }
+    }
+
+    public function show_products_search(Request $request){
+        $keyword = $request->search; 
+        $products = Product::where('product_name', 'Like', '%'.$keyword.'%')->paginate(12, '*');
+
+        return view('Main_Pages.products', compact('products', 'keyword'));
     }
 
     public function show_products(){
@@ -40,8 +48,10 @@ class Products extends Controller
     }
 
     public function show_product_detail(string $id){
+        $reviews = Review::where('product_id', $id)->join('users', 'reviews.user_id', '=', 'users.id')->select('users.id as user_id', 'users.*', 'reviews.*')->get();
         $product = Product::find($id);
-        return view('Main_Pages.product_detail', compact('product'));
+        
+        return view('Main_Pages.product_detail', compact('product', 'reviews'));
     }
 
     public function add_products(Request $request){

@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-light text-uppercase fs-6 p-3 border-bottom align-items-center">
+    @include('Components.un_svg')
     <div class="container-fluid">
         <div class="row justify-content-between align-items-center w-100">
 
@@ -56,6 +57,9 @@
                             @endcannot
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="/my_orders" id="dropdownShop" aria-expanded="false">My Orders</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="/about" id="dropdownShop" aria-expanded="false">About</a>
                             </li>
                             {{-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdownBlog"
@@ -160,9 +164,11 @@
                                     Hi-{{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="profileDropdown" style="position: absolute;">
-                                    <li><a class="dropdown-item" href="">Profile</a></li>
-                                    <li><a class="dropdown-item" href="">Settings</a></li>
-                                    <li><a class="dropdown-item" href="/admin/dashboard">Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="/user_profile">Profile</a></li>
+                                    <li><a class="dropdown-item" href="/edit_profile">Settings</a></li>
+                                    @if(Auth::user()->role === 'admin')
+                                        <li><a class="dropdown-item" href="/admin/dashboard">Dashboard</a></li>
+                                    @endif
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <form action="/logout" method="POST" style="margin: 0;">

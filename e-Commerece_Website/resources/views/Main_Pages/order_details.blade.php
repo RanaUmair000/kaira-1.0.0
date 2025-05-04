@@ -78,7 +78,7 @@
         <p><strong>Item:</strong> {{$order->product_name}}</p>
         <p><strong>Quantity:</strong> {{$order->qunatity}}</p>
         <p><strong>Payment Method:</strong> {{$order->payment_method}}</p>
-        <p><strong>Total Invoice:</strong> <span style="color: #000; font-weight: bold;"> {{$order->order_price}}</span></p>
+        <p><strong>Total Invoice:</strong> <span style="color: #000; font-weight: bold;"> ${{$order->order_price}}</span></p>
       </div>
     </div>
 

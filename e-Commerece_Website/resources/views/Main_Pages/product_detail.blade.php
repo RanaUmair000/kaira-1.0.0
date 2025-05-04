@@ -19,6 +19,11 @@
   @include('Components.navbar')
 
   <div class="pp_container">
+    @if(session('message'))
+      <div class="alert alert-secondary">
+        {{ session('message') }}
+      </div>
+    @endif
     <div class="product-page">
       <div class="product-image">
         <img src="/storage/{{$product->product_image}}" alt="Product Image" />
@@ -62,54 +67,62 @@
       </div>
     </div>
 
+    
+
     <div class="container my-5">
       <h4 class="mb-4">Customer Reviews</h4>
-      <div class="mb-4">
-        <div class="border-bottom pb-3 mb-3">
-          <div class="d-flex justify-content-between">
-            <strong>John Doe</strong>
-            <small class="text-muted">2025-05-01</small>
+      @if(!($reviews->isEmpty()))
+        <div class="mb-4">
+        @foreach($reviews as $review)
+          <div class="border-bottom pb-3 mb-3">
+            <div class="d-flex justify-content-between">
+              <strong>{{$review->name}}</strong>
+              <small class="text-muted">{{$review->review_date}}</small>
+            </div>
+            <div class="text-warning mb-1">
+              @if($review->rating == 5)
+                ★★★★★
+              @elseif($review->rating == 4)
+                ★★★★☆
+              @elseif($review->rating == 3)
+                ★★★☆☆
+              @elseif($review->rating == 2)
+                ★★☆☆☆
+              @elseif($review->rating == 1)
+                ★☆☆☆☆
+              @endif
+            </div>
+            <p class="mb-0">{{$review->review_text}}</p>
           </div>
-          <div class="text-warning mb-1">
-            ★★★★☆
-          </div>
-          <p class="mb-0">Great product, fast delivery. Would buy again!</p>
-        </div>
-    
-        <div class="border-bottom pb-3 mb-3">
-          <div class="d-flex justify-content-between">
-            <strong>Jane Smith</strong>
-            <small class="text-muted">2025-04-28</small>
-          </div>
-          <div class="text-warning mb-1">
-            ★★★★★
-          </div>
-          <p class="mb-0">Exceeded expectations. Quality is top-notch!</p>
-        </div>
+        @endforeach
+      @else
+          <h5>No Reviews Yet.</h5>
+      @endif
       </div>
-    
-      <h5>Add Your Review</h5>
-      <form action="/submit_review" method="POST">
-        <!-- Include @csrf if using Blade -->
-        <div class="mb-3">
-          <label for="rating" class="form-label">Rating</label>
-          <select class="form-select" id="rating" name="rating" required>
-            <option value="">Select rating</option>
-            <option value="5">★★★★★</option>
-            <option value="4">★★★★</option>
-            <option value="3">★★★</option>
-            <option value="2">★★</option>
-            <option value="1">★</option>
-          </select>
-        </div>
-    
-        <div class="mb-3">
-          <label for="comment" class="form-label">Your Comment</label>
-          <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
-        </div>
-    
-        <button type="submit" class="btn btn-dark">Submit Review</button>
-      </form>
+      @can('isLogin')
+        <h5 class="mt-5">Add Your Review</h5>
+        <form action="{{route('submit_review', $product->id)}}" method="POST">
+          @csrf 
+          <div class="mb-3">
+            <label for="rating" class="form-label">Rating</label>
+            <select class="form-select" id="rating" name="rating" required>
+              <option value="">Select Rating</option>
+              <option value="5">★★★★★</option>
+              <option value="4">★★★★</option>
+              <option value="3">★★★</option>
+              <option value="2">★★</option>
+              <option value="1">★</option>
+            </select>
+          </div>
+      
+          <div class="mb-3">
+            <label for="comment" class="form-label">Your Comment</label>
+            <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+          </div>
+      
+          <button type="submit" class="btn btn-dark">Submit Review</button>
+        </form>
+      @endcan
     </div>
     
   </div>
